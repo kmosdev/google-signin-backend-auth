@@ -108,21 +108,22 @@ public class MainActivity extends AppCompatActivity implements
 
     private void updateUI(boolean isSignedIn) {
         if (isSignedIn) {
-            // Show signed-in user's name
 
             String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
-            Account account = new Account(email, GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
             mStatus.setText(getString(R.string.signed_in_fmt, email));
 
+            /* Begin code to get the ID Token in the background */
+            Account account = new Account(email, GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
+
+            //This is an oauth2 client ID for your webserver. Get it from Google Dev Console.
+            //Should like something like: xxx-xxxxx.apps.googleusercontent.com
             String SERVER_CLIENT_ID = ""; // the web client id from google console
             String SCOPE = "audience:server:client_id:" + SERVER_CLIENT_ID;
 
+            //make the call for a token
+            //it should be logged to the console if successful, if not an error is logged
             new GetTokenTask(MainActivity.this, account, SCOPE).execute();
-            /*
-            String personName;
-            personName = "Unknown";
-            */
-           // mStatus.setText(getString(R.string.signed_in_fmt, personName));
+
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);

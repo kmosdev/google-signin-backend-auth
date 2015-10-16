@@ -21,7 +21,7 @@ To get this example working make sure you've created and downloaded google-servi
 
 Your project in Google Developer Console should have both an Android client Oauth2 ID and a Web client Oauth2 ID. The package name in the Android Manifest should match the name in the Android client package name. For this project it is com.google.samples.quickstart.signin
 
-Use the Web client id as 
+Use the Web client id as SERVER_CLIENT_ID in MainActivity
 
 When you run the example, if everything works right you should see the id token logged to the console in Android Studio. It will say something like:
 
